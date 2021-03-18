@@ -48,9 +48,9 @@ public class Lab4 {
         int value = 0;
 
         if (k < pivotIndex)
-            value = quickSelectA(Arrays.copyOfRange(a, 0, pivotIndex - 1), k);
+            value = quickSelect(Arrays.copyOfRange(a, 0, pivotIndex - 1), k);
         else if (k > pivotIndex)
-            value = quickSelectA(Arrays.copyOfRange(a, pivotIndex, a.length), k - pivotIndex);
+            value = quickSelect(Arrays.copyOfRange(a, pivotIndex, a.length), k - pivotIndex);
         else
             return a[--pivotIndex];
 
