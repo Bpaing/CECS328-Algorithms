@@ -15,6 +15,13 @@ public class Lab4 {
             if (n > 0)
                 break;
         }
+
+        int[] a = new int[n];
+        for (int i = 0; i < a.length; i++)
+            a[i] = rand.nextInt(201) - 100;
+        for (int num : a)
+            System.out.print(num + " ");
+
         int k;
         while(true) {
             System.out.print("Enter an integer from 1 to n: ");
@@ -22,7 +29,10 @@ public class Lab4 {
             if (k > 0 && k <= n)
                 break;
         }
-        
+
+        int median = quickSelect(a, n/2);
+        int[] diff = new int[n];
+
 
     }
 
@@ -32,7 +42,7 @@ public class Lab4 {
     }
 
     //sub-array quickSelect from lab 3
-    public static int quickSelectA(int[] a, int k)
+    public static int quickSelect(int[] a, int k)
     {
         int pivotIndex = partition(a) + 1;
         int value = 0;
