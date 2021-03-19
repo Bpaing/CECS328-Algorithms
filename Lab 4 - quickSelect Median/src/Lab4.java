@@ -29,6 +29,7 @@ public class Lab4 {
                 break;
         }
 
+        System.out.printf("%d closest values to median '%d'\n", k, quickSelect(a, a.length/2));
         int median = quickSelect(a, a.length/2);
         int[] diff = new int[a.length];
         for (int i = 0; i < a.length; i++) {
@@ -37,13 +38,16 @@ public class Lab4 {
                 k++;
         }
         int[] result = medianNeighbors(diff, k, 0, diff.length);
-        System.out.printf("%d closest values to median '%d'\n", k, quickSelect(a, a.length/2));
-        for (int num: result)
-            System.out.print(num + " ");
+        for (int i = 0; i < result.length; i++) {
+            result[i] += median;
+            if (result[i] != median)
+                System.out.print(result[i] + " ");
+        }
+
 
     }
 
-    //Lab 3 part B modified
+    //Lab 3 part B modified for Lab 4
     private static int[] medianNeighbors(int[] a, int k, int low, int high)
     {
         int pivotIndex = partitionAbs(a, low, high) + 1;
@@ -58,7 +62,8 @@ public class Lab4 {
         return a;
     }
 
-    private static int partitionAbs(int[] a, int low, int high) {
+    private static int partitionAbs(int[] a, int low, int high)
+    {
         int pivot = high - 1;
         int leftMarker = 0;
         int rightMarker = pivot - 1;
@@ -90,7 +95,7 @@ public class Lab4 {
     }
 
 
-    //sub-array quickSelect from lab 3
+    //sub-array quickSelect from lab 3 for median
     public static int quickSelect(int[] a, int k)
     {
         int pivotIndex = partition(a) + 1;
