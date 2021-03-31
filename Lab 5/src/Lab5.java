@@ -14,6 +14,6 @@ public class Lab5 {
         for (int i = 0; i < n; i++)
             arr[i] = random.nextInt(41) - 20;
 
-        
+
     }
 }
