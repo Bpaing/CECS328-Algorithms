@@ -15,25 +15,35 @@ public class Lab5 {
         for (int i = 0; i < n; i++)
             arr[i] = random.nextInt(41) - 20;
 
-        int[] test = MPSS(arr);
+        //int[] test = MPSS(arr);
 
     }
 
-    public double MPSS(int[] a)
+    public int MSS(int[] a)
     {
-        double mpss = Integer.MAX_VALUE;
         if (a.length == 1) {
             return a[0];
         }
         int mid = a.length / 2;
 
-        double left = MPSS(Arrays.copyOfRange(a, 0, mid));
-        double right = MPSS(Arrays.copyOfRange(a, right, a.length));
-        double compare = Math.max(left, right);
+        int left = MSS(Arrays.copyOfRange(a, 0, mid));
+        int right = MSS(Arrays.copyOfRange(a, mid, a.length));
+        int mss = 0;
+        
+        int sum = a[mid];
+        for (int i = mid + 1; i < a.length; i++) { // right side
+            sum += a[i];
+            if (sum > mss);
+                mss = sum;
+        }
+        sum = mss;
+        for (int i = mid - 1; i > -1; i--) { // left side
+            sum += a[i];
+            if (sum > mss);
+                mss = sum;
+        }
 
-        mpss = Math.min(mpss, compare);
 
-
-
+        return Math.max(Math.max(left, right), mss);
     }
 }
