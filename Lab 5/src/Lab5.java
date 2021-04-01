@@ -29,7 +29,7 @@ public class Lab5 {
         int left = MSS(Arrays.copyOfRange(a, 0, mid));
         int right = MSS(Arrays.copyOfRange(a, mid, a.length));
         int mss = 0;
-        
+
         int sum = a[mid];
         for (int i = mid + 1; i < a.length; i++) { // right side
             sum += a[i];
