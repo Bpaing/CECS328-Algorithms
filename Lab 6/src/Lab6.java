@@ -8,20 +8,43 @@ public class Lab6 {
         Scanner in = new Scanner(System.in);
         Random random = new Random();
 
-        System.out.print("Enter a positive integer: ");
+        System.out.print("Part A\nEnter a positive integer: ");
         int n = in.nextInt();
         int[] a = new int[n];
         for(int i = 0; i < n; i++)
             a[i] = random.nextInt(201) - 100;
         heap_sort(a);
-        
+        for (int num : a)
+            System.out.print(num + " ");
 
+        int runtimeHeap = 0;
+        int runtimeSelect = 0;
+        for (int reps = 0; reps < 100; reps++) {
+            int[] aHeap = new int[1000];
+            int[] aSelect = new int[1000];
+            for (int i = 0; i < 1000; i++) {
+                aHeap[i] = random.nextInt(201) - 100;
+                aSelect[i] = random.nextInt(201) - 100;
+            }
+            long start = System.nanoTime();
+            heap_sort(aHeap);
+            runtimeHeap += (System.nanoTime() - start);
+            start = System.nanoTime();
+            selection_sort(aSelect);
+            runtimeSelect += (System.nanoTime() - start);
+        }
+        runtimeHeap /= 100;
+        runtimeSelect /= 100;
+        System.out.printf("\n\nn = 1000\nHeap Sort (nlogn) average runtime: %d ns\n" +
+                "Selection Sort (n^2) average runtime: %d ns\n\n", runtimeHeap, runtimeSelect);
+
+
+        System.out.println("Part B");
         int[] b = new int[10];
         for (int i = 0; i < b.length; i++) {
             b[i] = random.nextInt(201) - 100;
             System.out.print(b[i] + " ");
         }
-
         heap_sort(b);
         for (int num : b)
             System.out.print(num + " ");
@@ -66,7 +89,7 @@ public class Lab6 {
         }
     }
     
-    public void selection_sort(int[] a) 
+    public static void selection_sort(int[] a)
     {
         for (int i = 0; i < a.length; i++) {
             int min = i;
