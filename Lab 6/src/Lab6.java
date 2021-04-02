@@ -7,25 +7,25 @@ public class Lab6 {
     {
         Scanner in = new Scanner(System.in);
         Random random = new Random();
-     /*
+
         System.out.print("Enter a positive integer: ");
         int n = in.nextInt();
         int[] a = new int[n];
         for(int i = 0; i < n; i++)
             a[i] = random.nextInt(201) - 100;
         heap_sort(a);
-*/
+        
 
         int[] b = new int[10];
         for (int i = 0; i < b.length; i++) {
             b[i] = random.nextInt(201) - 100;
             System.out.print(b[i] + " ");
         }
+
         heap_sort(b);
         for (int num : b)
             System.out.print(num + " ");
-        
-        
+
         in.close();
     }
     
@@ -33,6 +33,8 @@ public class Lab6 {
     public static void heap_sort(int[] a)
     {
         //build heap
+        // (a.length / 2 - 1) represents the last internal node.
+        // time would be wasted calling max_heapify on nodes without children.
         for (int i = a.length / 2 - 1; i >= 0; i--) {
             max_heapify(a, i, a.length);
         }
