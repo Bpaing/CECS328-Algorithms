@@ -7,14 +7,14 @@ public class Lab6 {
     {
         Scanner in = new Scanner(System.in);
         Random random = new Random();
-        
+     /*
         System.out.print("Enter a positive integer: ");
         int n = in.nextInt();
         int[] a = new int[n];
         for(int i = 0; i < n; i++)
             a[i] = random.nextInt(201) - 100;
         heap_sort(a);
-
+*/
 
         int[] b = new int[10];
         for (int i = 0; i < b.length; i++) {
@@ -30,28 +30,30 @@ public class Lab6 {
     }
     
     
-    public void heap_sort(int[] a)
+    public static void heap_sort(int[] a)
     {
-        build_MaxHeap(a);
-    }
+        //build heap
+        for (int i = a.length / 2 - 1; i > 0; i--) {
+            max_heapify(a, i, a.length);
+        }
 
-    public void build_MaxHeap(int[] a)
-    {
-        int n = a.length;
-        for (int i = n; i > 0; i++) {
-
-            max_heapify(a, i, n);
+        //sort
+        for (int end = a.length - 1; end > -1; end--) {
+            int temp = a[end];
+            a[end] = a[0];
+            a[0] = temp;
+            max_heapify(a, 0, end);
         }
     }
     
-    public void max_heapify(int[] a, int node, int n) {
+    public static void max_heapify(int[] a, int node, int n) {
         int max = node;
         int left = 2 * node;
         int right = (2 * node) + 1;
 
-        if (a[left] > a[node] && left < n)
+        if (left < n && a[left] > a[node])
             max = left;
-        if (a[right] > a[node] && right < n)
+        if (right < n && a[right] > a[node])
             max = right;
 
         if (max != node) {
