@@ -33,27 +33,27 @@ public class Lab6 {
     public static void heap_sort(int[] a)
     {
         //build heap
-        for (int i = a.length / 2 - 1; i > 0; i--) {
+        for (int i = a.length / 2 - 1; i >= 0; i--) {
             max_heapify(a, i, a.length);
         }
 
         //sort
-        for (int end = a.length - 1; end > -1; end--) {
+        for (int end = a.length - 1; end > 0; end--) {
             int temp = a[end];
             a[end] = a[0];
             a[0] = temp;
             max_heapify(a, 0, end);
         }
     }
-    
+
     public static void max_heapify(int[] a, int node, int n) {
         int max = node;
-        int left = 2 * node;
-        int right = (2 * node) + 1;
+        int left = (2 * node) + 1;
+        int right = (2 * node) + 2;
 
-        if (left < n && a[left] > a[node])
+        if (left < n && a[left] > a[max])
             max = left;
-        if (right < n && a[right] > a[node])
+        if (right < n && a[right] > a[max])
             max = right;
 
         if (max != node) {
