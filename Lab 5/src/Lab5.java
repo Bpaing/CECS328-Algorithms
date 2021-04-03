@@ -36,21 +36,27 @@ public class Lab5 {
         double mpssLeft = MPSS(Arrays.copyOfRange(a, 0, mid));
         double mpssRight = MPSS(Arrays.copyOfRange(a, mid, a.length));
 
-        double[] left = Arrays.copyOfRange(a, 0, mid); // n
-        Arrays.sort(left);
-        double[] right = Arrays.copyOfRange(a, mid, a.length); // n
 
-        double sum = a[mid];
-        for (int i = mid + 1; i < a.length; i++) { // right side
-            sum += a[i];
-            if (sum < mpss && sum > 0)
-                mpss = sum;
+        double ssL[] = new double[mid];
+        Arrays.sort(ssL); //nlogn
+        double ssR[] = new double[mid];
+        Arrays.sort(ssR); //nlogn
+
+        double min = Double.MAX_VALUE;
+        int i = 0;
+        int j = ssR.length - 1;
+        while (i < ssL.length && j > -1) {
+            double sum = ssL[i] + ssR[j];
+            if (sum <= 0) {
+                i++;
+            } else if (sum < min) {
+                min = sum;
+                j--;
+            } else {
+                j--;
+            }
         }
-        for (int i = mid - 1; i > -1; i--) { // left side
-            sum += a[i];
-            if (sum < mpss && sum > 0)
-                mpss = sum;
-        }
+        double mpssMid = min;
 
         return Math.min(Math.min(mpssLeft, mpssRight), mpssMid);
     }
