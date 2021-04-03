@@ -16,12 +16,14 @@ public class Lab5 {
         for (int i = 0; i < n; i++)
             arr[i] = random.nextInt(41) - 20;
 
-        double[] test = MPSS(arr);
+        System.out.printf(String.format("\nMPSS = %.1f\n", MPSS(result));
          */
 
         double[] example = {2, -3, 1, 4, -6, 10, -12, 5.2, 3.6, -8};
-        double result = MPSS(example);
-        System.out.println(result);
+        System.out.println("Example array");
+        for (double val : example)
+            System.out.print(val + " ");
+        System.out.printf(String.format("\nMPSS = %.1f\n", MPSS(example)));
     }
 
     public static double MPSS(double[] a)
@@ -36,17 +38,27 @@ public class Lab5 {
         double mpssLeft = MPSS(Arrays.copyOfRange(a, 0, mid));
         double mpssRight = MPSS(Arrays.copyOfRange(a, mid, a.length));
 
-
         double ssL[] = new double[mid];
-        Arrays.sort(ssL); //nlogn
         double ssR[] = new double[mid];
-        Arrays.sort(ssR); //nlogn
+        double sumLeft = 0, sumRight = 0;
+        for (int pos = 1; pos <= mid; pos++) {
+            if (mid - pos >= 0) {
+                sumLeft += a[mid - pos];
+                ssL[pos-1] = sumLeft;
+            }
+            if (mid + pos < a.length) {
+                sumRight += a[mid + pos];
+                ssR[pos-1] = sumRight;
+            }
+        }
+        Arrays.sort(ssL);
+        Arrays.sort(ssR);
 
         double min = Double.MAX_VALUE;
         int i = 0;
         int j = ssR.length - 1;
         while (i < ssL.length && j > -1) {
-            double sum = ssL[i] + ssR[j];
+            double sum = a[mid] + (ssL[i] + ssR[j]);
             if (sum <= 0) {
                 i++;
             } else if (sum < min) {
