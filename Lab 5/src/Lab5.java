@@ -37,7 +37,7 @@ public class Lab5 {
         double mpssRight = MPSS(Arrays.copyOfRange(a, mid, a.length));
 
         double[] left = Arrays.copyOfRange(a, 0, mid); // n
-        Arrays.
+        Arrays.sort(left);
         double[] right = Arrays.copyOfRange(a, mid, a.length); // n
 
         double sum = a[mid];
