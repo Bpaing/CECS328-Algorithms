@@ -38,7 +38,6 @@ public class Lab6 {
         System.out.printf("\n\nn = 1000\nHeap Sort (nlogn) average runtime: %d ns\n" +
                 "Selection Sort (n^2) average runtime: %d ns\n\n", runtimeHeap, runtimeSelect);
 
-
         System.out.println("Part B");
         int[] b = new int[10];
         for (int i = 0; i < b.length; i++) {
@@ -61,6 +60,7 @@ public class Lab6 {
         for (int i = a.length / 2 - 1; i >= 0; i--) {
             max_heapify(a, i, a.length);
         }
+        //%return new_a
 
         //sort
         for (int end = a.length - 1; end > 0; end--) {
