@@ -32,6 +32,18 @@ public class Graph {
                 }
             }
         }
+        printBFS(initial);
+    }
+
+    private static void printBFS(Node initial)
+    {
+        for (Node n : vertices) {
+            System.out.print(n.getDst());
+            while (n.getParent() != null) {
+                System.out.print(n + " ");
+                n = n.getParent();
+            }
+        }
     }
 
     public static Graph generateRandom(int v, int e)
