@@ -19,22 +19,6 @@ public class Node {
         parent = null;
     }
 
-    public static void BFS(Node initial)
-    {
-        Queue<Node> q = new LinkedList();
-        q.add(initial);
-        while(q.size() > 0) {
-            Node nextNode = q.remove();
-            for (Node n : nextNode.adj) {
-                if(n.parent == null) {
-                    q.add(nextNode);
-                    n.parent = nextNode;
-                    n.dst = nextNode.dst + 1;
-                }
-            }
-        }
-    }
-    
     public void add(Node node)
     {
             adj.add(node);
@@ -50,46 +34,15 @@ public class Node {
         return false;
     }
 
-    public String toString()
-    {
-        String str = "key: " + key + ", adj: { ";
-        for (Node a : adj)
-            str += a.key + " ";
-        return str + "}";
-    }
+    //mutators
+    public void setDst(int d) { dst = d; }
+    public void setParent(Node n) { parent = n; }
 
+    //accessors
+    public int getDst() { return dst; }
+    public Node getParent() { return parent; }
+    public ArrayList<Node> getAdj() { return adj; }
 
-    /*
-    // mutators
-    public void setParent(Node node)
-    {
-        parent = node;
-    }
+    public String toString() { return "key: " + key; }
 
-    public void setDst(int i)
-    {
-        dst = i;
-    }
-
-    public void add(Node node)
-    {
-        adj.add(node);
-    }
-
-    // accessors
-    public ArrayList<Node> getAdj()
-    {
-        return adj;
-    }
-
-    public int getDst()
-    {
-        return dst;
-    }
-
-    public Node getParent()
-    {
-        return parent;
-    }
-    */
 }
