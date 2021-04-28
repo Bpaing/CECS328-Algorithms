@@ -19,12 +19,6 @@ public class Node {
         parent = null;
     }
 
-    public void add(Node node)
-    {
-        adj.add(node);
-        node.adj.add(this);
-    }
-
     public static void BFS(Node initial)
     {
         Queue<Node> q = new LinkedList();
@@ -39,6 +33,29 @@ public class Node {
                 }
             }
         }
+    }
+    
+    public void add(Node node)
+    {
+            adj.add(node);
+            node.adj.add(this);
+    }
+
+    public boolean checkAdj(Node node)
+    {
+        for (Node n : adj) {
+            if (n.key == node.key)
+                return true;
+        }
+        return false;
+    }
+
+    public String toString()
+    {
+        String str = "key: " + key + ", adj: { ";
+        for (Node a : adj)
+            str += a.key + " ";
+        return str + "}";
     }
 
 
