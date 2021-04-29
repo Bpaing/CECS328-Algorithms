@@ -50,10 +50,44 @@ public class Graph {
         }
     }
 
-    public boolean isBipartite()
+
+    private void explore(Node initial)
     {
-        return true;
+        for (Node n : vertices)
+            n.setColor("gray");
+
+        initial.setColor("blue");
+        boolean result = isBipartite(initial);
+        for (Node n : vertices) {
+            if (n.getColor() == "gray") {
+                n.setColor("blue");
+                result = isBipartite(n);
+            }
+        }
+
+        for (Node n : vertices)
+            System.out.println(n.getColor());
     }
+
+    public boolean isBipartite(Node node)
+    {
+        Queue<Node> q = new LinkedList();
+        boolean bipartite = true;
+        q.add(node);
+        while(q.size() > 0 && bipartite) {
+            Node u = q.remove();
+            for (Node v : u.getAdj()) {
+                if (v.getColor() == "gray") {
+                    v.setColor("red");
+                } else if (v.getColor() == u.getColor()) {
+                    System.out.println("NOT bipartite");
+                    bipartite = false;
+                }
+            }
+        }
+        return bipartite;
+    }
+
 
     public static Graph generateRandom(int v, int e)
     {

@@ -10,6 +10,7 @@ public class Node {
     private int dst;
     private Node parent;
     private ArrayList<Node> adj;
+    private String color;
 
     public Node(char name)
     {
@@ -37,10 +38,12 @@ public class Node {
     //mutators
     public void setDst(int d) { dst = d; }
     public void setParent(Node n) { parent = n; }
+    public void setColor(String str) { color = str; }
 
     //accessors
     public int getDst() { return dst; }
     public Node getParent() { return parent; }
+    public String getColor() { return color; }
     public ArrayList<Node> getAdj() { return adj; }
 
     public void printAdj() {
