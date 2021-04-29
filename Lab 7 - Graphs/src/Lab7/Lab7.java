@@ -13,6 +13,7 @@ public class Lab7 {
             if (selection.equalsIgnoreCase("A")) {
                 //part A
                 Graph example = Graph.generateExampleA();
+                example.printAdjacencyMatrix();
                 System.out.print("Part A\nExample Graph\nPlease enter initial vertex from a - h to perform BFS: ");
                 char c = in.next().charAt(0);
                 example.BFS(example.getVertex(c));
@@ -22,6 +23,7 @@ public class Lab7 {
                 System.out.printf("Please enter number of edges, max %d: ", (v * (v + 1)) / 2);
                 int e = in.nextInt();
                 example = Graph.generateRandom(v, e);
+                example.printAdjacencyMatrix();
                 System.out.printf("Please enter initial vertex from %s - %s to perform BFS: ",
                         example.getGraph().get(0), example.getGraph().get(example.size() - 1));
                 c = in.next().charAt(0);
@@ -31,12 +33,14 @@ public class Lab7 {
                 //part B
                 System.out.println("\nPart B\nExample Graph");
                 Graph example = Graph.generateExampleB();
+                example.printAdjacencyMatrix();
                 example.explore();
                 System.out.print("\nRandom Graph\nPlease enter number of vertices: ");
                 int v = in.nextInt();
                 System.out.printf("Please enter number of edges, max %d: ", (v * (v + 1)) / 2);
                 int e = in.nextInt();
                 example = Graph.generateRandom(v, e);
+                example.printAdjacencyMatrix();
                 example.explore();
                 System.out.println();
             }
