@@ -13,7 +13,7 @@ public class Lab7 {
         Graph example = Graph.generateExample();
         System.out.println("Example Graph\nPlease enter a vertex from a - h");
         char c = in.next().charAt(0);
-        Graph.BFS(example.getVertex(c));
+        example.BFS(example.getVertex(c));
     }
 
 }

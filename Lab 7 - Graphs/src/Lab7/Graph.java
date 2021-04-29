@@ -18,7 +18,7 @@ public class Graph {
         vertices = new ArrayList(copy);
     }
 
-    public static void BFS(Node initial)
+    public void BFS(Node initial)
     {
         Queue<Node> q = new LinkedList();
         q.add(initial);
@@ -35,7 +35,8 @@ public class Graph {
         printBFS(initial);
     }
 
-    private static void printBFS(Node initial)
+    //helper method to print BFS
+    private void printBFS(Node initial)
     {
         for (Node n : vertices) {
             System.out.print(n.getDst());
@@ -97,6 +98,7 @@ public class Graph {
     }
 
     public void add(Node node) { vertices.add(node); }
+    public ArrayList<Node> getGraph() { return vertices; }
     public Node getVertex(int i) { return vertices.get(i); }        //list index
     public Node getVertex(char i) { return vertices.get(i - 97); }  //char key
     public int size() { return vertices.size(); };
