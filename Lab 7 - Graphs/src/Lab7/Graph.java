@@ -41,11 +41,18 @@ public class Graph {
         System.out.printf("From initial node '%s':", initial);
         for (Node n : vertices) {
             System.out.printf("\n'%s', dst %d\tShortest Path: ", n, n.getDst());
+            if (n.getParent() == null)
+                System.out.print("Initial/Unconnected.");
             while (n.getParent() != null) {
                 System.out.print(n + " ");
                 n = n.getParent();
             }
         }
+    }
+
+    public boolean isBipartite()
+    {
+        return true;
     }
 
     public static Graph generateRandom(int v, int e)
@@ -60,12 +67,14 @@ public class Graph {
             Node nodeTwo = list.get(rand.nextInt(v));
             if (!nodeOne.checkAdj(nodeTwo))
                 nodeOne.add(nodeTwo);
+            else
+                i--;
         }
         return new Graph(list);
     }
 
 
-    public static Graph generateExample()
+    public static Graph generateExampleA()
     {
         ArrayList<Node> list = new ArrayList();
         Node a = new Node('a');
@@ -94,6 +103,41 @@ public class Graph {
         d.add(e);
         e.add(f);
         f.add(h);
+
+        return new Graph(list);
+    }
+
+    public static Graph generateExampleB()
+    {
+        ArrayList<Node> list = new ArrayList();
+        Node a = new Node('a');
+        list.add(a);
+        Node b = new Node('b');
+        list.add(b);
+        Node c = new Node('c');
+        list.add(c);
+        Node d = new Node('d');
+        list.add(d);
+        Node e = new Node('e');
+        list.add(e);
+        Node f = new Node('f');
+        list.add(f);
+        Node g = new Node('g');
+        list.add(g);
+        Node h = new Node('h');
+        list.add(h);
+        Node i = new Node('i');
+        list.add(h);
+
+        a.add(d);
+        c.add(d);
+        c.add(e);
+        b.add(d);
+        b.add(f);
+        d.add(f);
+        g.add(h);
+        g.add(i);
+        i.add(h);
 
         return new Graph(list);
     }
