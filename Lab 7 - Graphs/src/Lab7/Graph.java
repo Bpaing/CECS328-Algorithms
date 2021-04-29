@@ -25,8 +25,8 @@ public class Graph {
         while(q.size() > 0) {
             Node nextNode = q.remove();
             for (Node n : nextNode.getAdj()) {
-                if(n.getParent() == null) {
-                    q.add(nextNode);
+                if(n.getParent() == null && n != initial) {
+                    q.add(n);
                     n.setParent(nextNode);
                     n.setDst(nextNode.getDst() + 1);
                 }
@@ -38,8 +38,9 @@ public class Graph {
     //helper method to print BFS
     private void printBFS(Node initial)
     {
+        System.out.printf("From initial node '%s':", initial);
         for (Node n : vertices) {
-            System.out.print(n.getDst());
+            System.out.printf("\n'%s', dst %d\tShortest Path: ", n, n.getDst());
             while (n.getParent() != null) {
                 System.out.print(n + " ");
                 n = n.getParent();

@@ -43,6 +43,11 @@ public class Node {
     public Node getParent() { return parent; }
     public ArrayList<Node> getAdj() { return adj; }
 
-    public String toString() { return "key: " + key; }
+    public void printAdj() {
+        for (Node n : adj)
+            System.out.println(n);
+    }
+
+    public String toString() { return String.valueOf(key); }
 
 }
