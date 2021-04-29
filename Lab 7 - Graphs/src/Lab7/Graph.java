@@ -89,6 +89,10 @@ public class Graph {
         return bipartite;
     }
 
+    public void printAdjacencyMatrix()
+    {
+
+    }
 
     public static Graph generateRandom(int v, int e)
     {

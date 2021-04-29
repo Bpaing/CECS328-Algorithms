@@ -1,8 +1,6 @@
 package Lab7;
 
 import java.util.ArrayList;
-import java.util.Queue;
-import java.util.LinkedList;
 
 public class Node {
 
@@ -46,11 +44,5 @@ public class Node {
     public String getColor() { return color; }
     public ArrayList<Node> getAdj() { return adj; }
 
-    public void printAdj() {
-        for (Node n : adj)
-            System.out.println(n);
-    }
-
     public String toString() { return String.valueOf(key); }
-
 }

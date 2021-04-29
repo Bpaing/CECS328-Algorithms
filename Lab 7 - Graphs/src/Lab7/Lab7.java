@@ -1,12 +1,8 @@
 package Lab7;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.Scanner;
 
 public class Lab7 {
-
     public static void main(String args[]) {
         //part A
         Scanner in = new Scanner(System.in);
@@ -48,7 +44,6 @@ public class Lab7 {
         }
         in.close();
     }
-
 }
 
 
