@@ -50,23 +50,25 @@ public class Graph {
         }
     }
 
-
-    private void explore(Node initial)
+    public void explore()
     {
+        Node first = vertices.get(0);
         for (Node n : vertices)
             n.setColor("gray");
-
-        initial.setColor("blue");
-        boolean result = isBipartite(initial);
+        first.setColor("blue");
+        boolean result = isBipartite(first);
         for (Node n : vertices) {
             if (n.getColor() == "gray") {
                 n.setColor("blue");
                 result = isBipartite(n);
             }
         }
-
+        if (result)
+            System.out.println("Graph is bipartite.");
+        else
+            System.out.println("NOT bipartite.");
         for (Node n : vertices)
-            System.out.println(n.getColor());
+            System.out.printf("'%s'\t%s\n", n, n.getColor());
     }
 
     public boolean isBipartite(Node node)
@@ -80,7 +82,6 @@ public class Graph {
                 if (v.getColor() == "gray") {
                     v.setColor("red");
                 } else if (v.getColor() == u.getColor()) {
-                    System.out.println("NOT bipartite");
                     bipartite = false;
                 }
             }
@@ -127,7 +128,6 @@ public class Graph {
         list.add(g);
         Node h = new Node('h');
         list.add(h);
-
         a.add(c);
         a.add(d);
         b.add(c);
@@ -137,7 +137,6 @@ public class Graph {
         d.add(e);
         e.add(f);
         f.add(h);
-
         return new Graph(list);
     }
 
@@ -162,7 +161,6 @@ public class Graph {
         list.add(h);
         Node i = new Node('i');
         list.add(h);
-
         a.add(d);
         c.add(d);
         c.add(e);
@@ -172,7 +170,6 @@ public class Graph {
         g.add(h);
         g.add(i);
         i.add(h);
-
         return new Graph(list);
     }
 
