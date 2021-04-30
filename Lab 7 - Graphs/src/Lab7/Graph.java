@@ -91,7 +91,18 @@ public class Graph {
 
     public void printAdjacencyMatrix()
     {
-
+        int[][] matrix = new int[vertices.size()][vertices.size()];
+        for (int row = 0; row < vertices.size(); row++) {
+            for (int col = 0; col < vertices.size(); col++) {
+                Node one = vertices.get(row);
+                Node two = vertices.get(col);
+                if (one.getAdj().contains(two)) {
+                    matrix[row][col]++;
+                }
+                System.out.print(matrix[row][col] + " ");
+            }
+            System.out.println();
+        }
     }
 
     public static Graph generateRandom(int v, int e)
