@@ -9,12 +9,13 @@ public class Lab7 {
         boolean menu = true;
         while (menu) {
             System.out.println("A = Part A\nB = Part B\nAll other input will exit.");
-            String selection = in.nextLine().toUpperCase();
+            String selection = in.next().toUpperCase();
             if (selection.equalsIgnoreCase("A")) {
                 //part A
                 Graph example = Graph.generateExampleA();
+                System.out.print("Part A\nExample Graph\n");
                 example.printAdjacencyMatrix();
-                System.out.print("Part A\nExample Graph\nPlease enter initial vertex from a - h to perform BFS: ");
+                System.out.print("Please enter initial vertex from a - h to perform BFS: ");
                 char c = in.next().charAt(0);
                 example.BFS(example.getVertex(c));
 

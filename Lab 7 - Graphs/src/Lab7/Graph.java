@@ -48,6 +48,7 @@ public class Graph {
                 n = n.getParent();
             }
         }
+        System.out.println();
     }
 
     public void explore()
