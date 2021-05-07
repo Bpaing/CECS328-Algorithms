@@ -20,27 +20,51 @@ public class Graph {
 
     public void DFS(Node initial)
     {
+        boolean cycle = false;
         int time = 0;
+        Queue<Node> tpl = new LinkedList();
         for (Node node : vertices) {
-            node.setParent(initial);
-            dfsVisit(node, time);
+            if (node.getStart() == -1)
+                cycle = dfsVisit(node, time, tpl);
+            if  (node.getEnd() != -1 && node.getEnd() > time) //time tracker
+                time = node.getEnd();
         }
+
+        if (!cycle) {
+            System.out.println("\nTopological Order");
+            for (Node n : tpl) {
+                System.out.printf("%c %d/%d\n", n.getKey(), n.getStart(), n.getEnd());
+            }
+            System.out.println();
+        } else{
+            System.out.println("Cycle detected, topological sort is impossible\n");
+        }
+
     }
 
-    private void dfsVisit(Node node, int time)
+    private boolean dfsVisit(Node node, int time, Queue<Node> list)
     {
+        boolean cycle = false;
         time++;
         node.setStart(time);
-        for (Node v : node.getAdj()) {
+        for (int i = 0; i < node.getAdj().size() && !cycle; i++) {
+            Node v = node.getAdj().get(i);
+            if (v.getStart() != -1 && v.getEnd() == -1) {
+                return true;
+            }
             if (v.getStart() == -1) {
                 v.setParent(node);
-                dfsVisit(v, time);
+                cycle = dfsVisit(v, time, list);
             }
-            if ( v.getStart() != -1 && v.getEnd() == -1)
-                System.out.println("Cycle detected, topological sort is impossible");
+            if  (v.getEnd() != -1 && v.getEnd() > time) //time tracker
+                time = v.getEnd();
         }
-        time++;
-        node.setEnd(time);
+        if (!cycle) {
+            time++;
+            node.setEnd(time);
+            list.add(node);
+        }
+        return cycle;
     }
 
     public void printAdjacencyMatrix()

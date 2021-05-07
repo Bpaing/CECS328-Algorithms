@@ -10,13 +10,11 @@ public class Node {
     private int end;    //end time
     private Node parent;
     private ArrayList<Node> adj;
-    private ArrayList<Node> edge;
 
     public Node(char name)
     {
         key = name;
         adj = new ArrayList<>();
-        edge = new ArrayList<>();
         dst = 0;
         parent = null;
         start = -1;
@@ -24,14 +22,9 @@ public class Node {
     }
 
     //This method was altered to simulate directed edges
-    //Adj is two-way, Edge is only one-way
     public void add(Node node)
     {
-        if(!checkAdj(node)) {
             adj.add(node);
-            node.adj.add(this);
-        }
-        edge.add(node);
     }
 
     public boolean checkAdj(Node node)
@@ -50,10 +43,10 @@ public class Node {
     public void setEnd(int i) { end = i; }
 
     //accessors
+    public char getKey() { return key; };
     public int getDst() { return dst; }
     public Node getParent() { return parent; }
     public ArrayList<Node> getAdj() { return adj; }
-    public ArrayList<Node> getEdge() { return edge; }
     public int getStart() { return start; }
     public int getEnd() { return end; }
 
