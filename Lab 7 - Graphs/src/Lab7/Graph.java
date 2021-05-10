@@ -75,7 +75,7 @@ public class Graph {
     public boolean isBipartite(Node node)
     {
         Queue<Node> q = new LinkedList();
-        boolean bipartite = true;
+        boolean bipartite = true;++
         q.add(node);
         while(q.size() > 0 && bipartite) {
             Node u = q.remove();
